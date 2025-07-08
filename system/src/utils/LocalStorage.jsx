@@ -21,7 +21,7 @@ const employees = [
                 "taskTitle": "Update website",
                 "taskDescription": "Revamp the homepage design",
                 "taskDate": "2024-10-12",
-                "category": "Design" 
+                "category": "Design"
             },
             {
                 "active": false,
@@ -210,48 +210,13 @@ const admin = [{
     "password": "123"
 }];
 
-export const setLocalStorage = ()=>{
-    localStorage.setItem('employees',JSON.stringify(employees))
-    localStorage.setItem('admin',JSON.stringify(admin))
+export const setLocalStorage = () => {
+    localStorage.setItem('employees', JSON.stringify(employees))
+    localStorage.setItem('admin', JSON.stringify(admin))
 }
-export const getLocalStorage = ()=>{
+export const getLocalStorage = () => {
     const employees = JSON.parse(localStorage.getItem('employees'))
     const admin = JSON.parse(localStorage.getItem('admin'))
 
-    return {employees,admin}
+    return { employees, admin }
 }
-// const Admin = [
-//     {
-//         id: 1,
-//         name: "Admin Rohit",
-//         email: "admin.rohit@gmail.com",
-//         password: "admin123",
-//         role: "superadmin"
-//     },
-//     {
-//         id: 2,
-//         name: "Admin Monika",
-//         email: "admin.monika@gmail.com",
-//         password: "admin123",
-//         role: "projectadmin"
-//     },
-//     {
-//         id: 3,
-//         name: "Admin Sarthak",
-//         email: "admin.sarthak@gmail.com",
-//         password: "admin123",
-//         role: "teamadmin"
-//     }
-// ];
-
-// export const setLocalStorage = () => {
-//     console.log(Employee)
-//     localStorage.setItem("employees", JSON.stringify(Employee));
-//     localStorage.setItem("admin", JSON.stringify(Admin));
-// };
-
-// export const getLocalStorage = () => {
-//     const employees = JSON.parse(localStorage.getItem("employees"));
-//     const admin = JSON.parse(localStorage.getItem("admin"));
-//     return { employees, admin };
-// };

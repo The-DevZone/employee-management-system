@@ -1,48 +1,45 @@
-// import './App.css'
-// import Login from './components/Auth/Login.jsx'
-// import { AdminDashboard } from './components/Dashboard/AdminDashboard.jsx'
-// import EmployeeDashboard from './components/Dashboard/EmployeeDashboard.jsx'
-// import { setLocalStorage } from './utils/LocalStorage.jsx'
-// import { useEffect } from 'react'
 
-// function App() {
-//   useEffect(() => {
-//     console.log("hellow monika");
-
-//     setLocalStorage()
-//   }, [])
-
-//   return (
-//     <>
-//       <Login />
-//       {/* <EmployeeDashboard /> */}
-//       {/* <AdminDashboard /> */}
-//     </>
-//   )
-// }
-
-// export default App
-
-
-// src/App.jsx
+import { AdminDashboard } from './components/Dashboard/AdminDashboard.jsx'
+import EmployeeDashboard from './components/Dashboard/EmployeeDashboard.jsx'
 
 import './App.css';
 import Login from './components/Auth/Login.jsx';
-import { setLocalStorage } from './utils/LocalStorage';
-import { useEffect } from 'react';
+import { useState } from 'react';
+// import { getLocalStorage, setLocalStorage } from './utils/LocalStorage';
+// import { useEffect } from 'react';
+import { AuthContext } from './context/AuthProvider.jsx';
+
+
 
 function App() {
-  useEffect(() => {
-    console.log(setLocalStorage());
-    setLocalStorage()
-    // this will run once on app load
-  }, []);
+  // useEffect(() => {
+  //   console.log(setLocalStorage());
+  //   setLocalStorage()
+  //   console.log(getLocalStorage())
+  // }, []);
 
+
+  const [user, setUser] = useState(null)
+
+  const handelLogin = (email, password) => {
+    if (email === "admin@gmail.com" && password === "123") {
+      setUser("admin")
+      console.log("admin login")
+    } else if (email === "employee@gmail.com" && password === "123") {
+      setUser("employee")
+      console.log("user login")
+    } else {
+      alert("Invalid cradintial")
+    }
+  }
+
+  const datass = useContext(AuthContext)
+  console.log(datass)
   return (
     <>
-      <Login />
-      {/* <EmployeeDashboard /> */}
-      {/* <AdminDashboard /> */}
+      {!user ? <Login handelLogin={handelLogin} /> : ""}
+      {user === "admin" && <AdminDashboard />}
+      {user === "employee" && <EmployeeDashboard />}
     </>
   );
 }
