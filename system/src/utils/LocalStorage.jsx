@@ -4,8 +4,8 @@ const employees = [
     {
         "id": 1,
         "firstName": "Arjun",
-        "email": "e@e.com",
-        "password": "123",
+        "email": "rohit@gmail.com",
+        "password": "a",
         "taskCounts": {
             "active": 2,
             "newTask": 1,
@@ -210,6 +210,9 @@ const admin = [{
     "password": "123"
 }];
 
+// useEffect(() => {
+//     setLocalStorage()
+// }, [])
 
 export const setLocalStorage = () => {
     localStorage.setItem('employees', JSON.stringify(employees))

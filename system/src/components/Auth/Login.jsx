@@ -34,7 +34,7 @@ const Login = ({ handleLogin }) => {
                     <input
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        required
+                        // required 
                         type="email"
                         placeholder="Enter your email"
                         className="w-full px-6 py-3 border-2 border-emerald-400 rounded-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
@@ -43,7 +43,7 @@ const Login = ({ handleLogin }) => {
                     <input
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required
+                        // required 
                         type="password"
                         placeholder="Enter your password"
                         className="w-full px-6 py-3 border-2 border-emerald-400 rounded-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
