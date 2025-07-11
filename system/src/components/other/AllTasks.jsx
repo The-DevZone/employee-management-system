@@ -1,27 +1,33 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../../context/AuthProvider'
 
 const AllTasks = () => {
+
+    const userData = useContext(AuthContext)
+    console.log(userData.employees)
     return (
         <>
-            <div className="flex justify-between mb-3 items-center bg-red-400 text-white px-6 py-3 font-medium">
-                <div className="text-sm">Sarthak</div>
-                <div className="text-sm text-center">Make a UI Design</div>
-                <div className="text-sm text-right">Status</div>
-            </div>
-            <div className="flex justify-between mb-3 items-center bg-green-400 text-white px-6 py-3 font-medium">
-                <div className="text-sm">Sarthak</div>
-                <div className="text-sm text-center">Make a UI Design</div>
-                <div className="text-sm text-right">Status</div>
-            </div>
-            <div className="flex justify-between mb-3 items-center bg-yellow-400 text-white px-6 py-3 font-medium">
-                <div className="text-sm">Sarthak</div>
-                <div className="text-sm text-center">Make a UI Design</div>
-                <div className="text-sm text-right">Status</div>
-            </div>
-            <div className="flex justify-between mb-3 items-center bg-purple-600 text-white px-6 py-3 font-medium">
-                <div className="text-sm">Sarthak</div>
-                <div className="text-sm text-center">Make a UI Design</div>
-                <div className="text-sm text-right">Status</div>
+            <div className='bg-[#1c1c1c] p-5 rounded mt-5'>
+                <div className='bg-red-400 mb-2 py-2 px-4 flex justify-between rounded'>
+                    <h2 className='text-lg font-medium w-1/5'>Employee Name</h2>
+                    <h3 className='text-lg font-medium w-1/5'>New Task</h3>
+                    <h5 className='text-lg font-medium w-1/5'>Active Task</h5>
+                    <h5 className='text-lg font-medium w-1/5'>Completed</h5>
+                    <h5 className='text-lg font-medium w-1/5'>Failed</h5>
+                </div>
+                <div className=''>
+                    {userData?.employees?.map(function (elem, idx) {
+                        return <div key={idx} className='border-2 border-black mb-2 bg-gray-400 py-2 px-4 flex justify-between rounded'>
+                            <h2 className='text-lg font-medium  w-1/5'>{elem?.firstName ?? 0}</h2>
+                            <h3 className='text-lg font-medium w-1/5 text-blue-400'>{elem?.taskCounts?.newTask ?? 0}</h3>
+                            <h5 className='text-lg font-medium w-1/5 text-yellow-400'>{elem?.taskCounts?.active ?? 0}</h5>
+                            <h5 className='text-lg font-medium w-1/5 text-white'>{elem?.taskCounts?.completed ?? 0}</h5>
+                            <h5 className='text-lg font-medium w-1/5 text-red-600'>{elem?.taskCounts?.failed ?? 0}</h5>
+                        </div>
+                    })}
+                </div>
+
+
             </div>
         </>
     )
