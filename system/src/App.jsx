@@ -34,18 +34,6 @@ function App() {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("loggedInUser");
-    // console.log(typeof loggedInUser)
-    // console.log(loggedInUser)
-    // if (loggedInUser) {
-    //   const parsedData = JSON.parse(loggedInUser);
-    //   // console.log(parsedData)
-    //   if (parsedData.role === "admin") {
-    //     setUser("admin")
-    //   } else if (parsedData.role === "employee") {
-    //     setUser("employee")
-    //     setLoggedInUser(parsedData.data)
-    //   }
-    // }
     if (loggedInUser) {
       const userData = JSON.parse(loggedInUser)
       setUser(userData.role)
@@ -53,16 +41,15 @@ function App() {
     }
   }, [])
 
-  
+  // localStorage.clear()
 
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser")
     console.log("ma button pr click hua hu logout wale pr ")
-
     setUser(null)
     setLoggedInUser(null)
   }
-  // console.log(handleLogout)
+
 
 
   const handleLogin = (email, password) => {
@@ -89,7 +76,7 @@ function App() {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
-      {user === "admin" && <AdminDashboard />}
+      {user === "admin" && <AdminDashboard handleLogout={handleLogout} />}
       {user === "employee" ? <EmployeeDashboard data={loggedInUser} handleLogout={handleLogout} /> : null}
     </>
   );
