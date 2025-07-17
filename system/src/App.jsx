@@ -11,26 +11,12 @@ import { AuthContext } from './context/AuthProvider.jsx';
 
 
 
+
 function App() {
   const [user, setUser] = useState(null)
   const [loggedInUser, setLoggedInUser] = useState(null)
-  const userData = useContext(AuthContext)
-
-  // const authData = useContext(AuthContext)
-  // console.log(authData)
-
-  // useEffect(() => {
-  //   const loggedInUser = localStorage.getItem("loggedInUser")
-
-  //   if (loggedInUser) {
-  //     const userData = JSON.parse(loggedInUser)
-  //     setUser(loggedInUser.role)
-  //     setLoggedInUser(userData.data)
-
-  //   }
-
-  // }, [userData])
-  // localStorage.clear()
+  const [userData, setUserData] = useContext(AuthContext)
+  console.log(userData)
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("loggedInUser");
@@ -41,11 +27,10 @@ function App() {
     }
   }, [])
 
-  // localStorage.clear()
 
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser")
-    console.log("ma button pr click hua hu logout wale pr ")
+    console.log("ma button pr click hua hu logout wale pr")
     setUser(null)
     setLoggedInUser(null)
   }
@@ -54,13 +39,14 @@ function App() {
 
   const handleLogin = (email, password) => {
 
-    const findAdminData = userData && userData.admin?.find(admin => admin.email === email && admin.password === password);
+    email = email.trim();
+    password = password.trim();
 
-    if (findAdminData) {
+    if (email == "admin@gmail.com" && password == "123") {
       setUser({ role: "admin" })
       localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }))
     } else if (userData) {
-      const employee = userData.employees?.find(emp => emp.email === email && emp.password === password);
+      const employee = userData.find(emp => emp.email === email && emp.password === password);
       if (employee) {
         setUser("employee")
         setLoggedInUser(employee)
@@ -70,8 +56,6 @@ function App() {
       alert("Invalid cradintial")
     }
   }
-
-
 
   return (
     <>
