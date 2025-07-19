@@ -1,14 +1,15 @@
-import React, {  useEffect, useState } from 'react'
-import { setLocalStorage } from '../../utils/LocalStorage'
+import React, {   useState } from 'react'
+// import { setLocalStorage } from '../../utils/LocalStorage'
+// import { initLocalStorage } from '../../utils/LocalStorage';
 // import {  setLocalStorage } from '../../utils/LocalStorage'
 
 const Login = ({ handleLogin }) => {
 
-    useEffect(() => {
-        setLocalStorage()
+    // useEffect(() => {
+    //     initLocalStorage()
 
-        // console.log(getLocalStorage())
-    }, [])
+    //     // console.log(getLocalStorage())
+    // }, [])
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

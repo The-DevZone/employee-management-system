@@ -5,9 +5,9 @@ import EmployeeDashboard from './components/Dashboard/EmployeeDashboard.jsx'
 import './App.css';
 import Login from './components/Auth/Login.jsx';
 import { useContext, useState } from 'react';
-// import { getLocalStorage, setLocalStorage } from './utils/LocalStorage';
-// import { useEffect } from 'react';
+
 import { AuthContext } from './context/AuthProvider.jsx';
+import { setLocalStorage } from './utils/LocalStorage.jsx';
 
 
 
@@ -15,46 +15,56 @@ import { AuthContext } from './context/AuthProvider.jsx';
 function App() {
   const [user, setUser] = useState(null)
   const [loggedInUser, setLoggedInUser] = useState(null)
-  const [userData, setUserData] = useContext(AuthContext)
+  const [userData] = useContext(AuthContext)
   console.log(userData)
 
+
+
+
   useEffect(() => {
+
+    setLocalStorage();
+
     const loggedInUser = localStorage.getItem("loggedInUser");
+    // console.log("Found from localStorage:", loggedInUser); // ✅ Check yeh log
     if (loggedInUser) {
       const userData = JSON.parse(loggedInUser)
+      // console.log("Parsed userData", userData); // ✅ Check isme kya aaya
       setUser(userData.role)
       setLoggedInUser(userData.data)
     }
   }, [])
 
-
-  const handleLogout = () => {
-    localStorage.removeItem("loggedInUser")
-    console.log("ma button pr click hua hu logout wale pr")
-    setUser(null)
-    setLoggedInUser(null)
-  }
-
-
-
   const handleLogin = (email, password) => {
-
     email = email.trim();
     password = password.trim();
 
+
     if (email == "admin@gmail.com" && password == "123") {
-      setUser({ role: "admin" })
+      // alert()
+      setUser("admin")
       localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }))
     } else if (userData) {
       const employee = userData.find(emp => emp.email === email && emp.password === password);
       if (employee) {
+        // console.log("✅ Employee found:", employee);
         setUser("employee")
         setLoggedInUser(employee)
         localStorage.setItem("loggedInUser", JSON.stringify({ role: "employee", data: employee }))
+      } else {
+        console.log("❌ No employee matched");
       }
     } else {
       alert("Invalid cradintial")
     }
+  }
+
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser")
+    setUser(null)
+    setLoggedInUser(null)
   }
 
   return (

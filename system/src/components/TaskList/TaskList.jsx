@@ -12,6 +12,7 @@ const TaskList = ({ data }) => {
                 {
                     data.tasks.map((elem, idx) => {
 
+                        console.log(elem)
                         if (elem.active) {
                             return <AcceptTask key={idx} data={elem} />
                         }

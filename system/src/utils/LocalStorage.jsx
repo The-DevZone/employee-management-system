@@ -19,7 +19,7 @@ const employees = [
                 "completed": false,
                 "failed": false,
                 "taskTitle": "Update website",
-                "taskDescription": "Revamp the homepage design",
+                "description": "Revamp the homepage design",
                 "taskDate": "2024-10-12",
                 "category": "Design"
             },
@@ -29,7 +29,7 @@ const employees = [
                 "completed": true,
                 "failed": false,
                 "taskTitle": "Client meeting",
-                "taskDescription": "Discuss project requirements",
+                "description": "Discuss project requirements",
                 "taskDate": "2024-10-10",
                 "category": "Meeting"
             },
@@ -39,7 +39,7 @@ const employees = [
                 "completed": false,
                 "failed": false,
                 "taskTitle": "Fix bugs",
-                "taskDescription": "Resolve bugs reported in issue tracker",
+                "description": "Resolve bugs reported in issue tracker",
                 "taskDate": "2024-10-14",
                 "category": "Development"
             }
@@ -63,7 +63,7 @@ const employees = [
                 "completed": false,
                 "failed": false,
                 "taskTitle": "Database optimization",
-                "taskDescription": "Optimize queries for better performance",
+                "description": "Optimize queries for better performance",
                 "taskDate": "2024-10-11",
                 "category": "Database"
             },
@@ -73,7 +73,7 @@ const employees = [
                 "completed": true,
                 "failed": false,
                 "taskTitle": "Design new feature",
-                "taskDescription": "Create mockups for the new feature",
+                "description": "Create mockups for the new feature",
                 "taskDate": "2024-10-09",
                 "category": "Design"
             }
@@ -97,7 +97,7 @@ const employees = [
                 "completed": false,
                 "failed": false,
                 "taskTitle": "Prepare presentation",
-                "taskDescription": "Prepare slides for upcoming client presentation",
+                "description": "Prepare slides for upcoming client presentation",
                 "taskDate": "2024-10-13",
                 "category": "Presentation"
             },
@@ -107,7 +107,7 @@ const employees = [
                 "completed": false,
                 "failed": false,
                 "taskTitle": "Code review",
-                "taskDescription": "Review the codebase for optimization",
+                "description": "Review the codebase for optimization",
                 "taskDate": "2024-10-12",
                 "category": "Development"
             },
@@ -117,7 +117,7 @@ const employees = [
                 "completed": true,
                 "failed": false,
                 "taskTitle": "Testing",
-                "taskDescription": "Test the latest build for bugs",
+                "description": "Test the latest build for bugs",
                 "taskDate": "2024-10-08",
                 "category": "QA"
             }
@@ -141,7 +141,7 @@ const employees = [
                 "completed": false,
                 "failed": false,
                 "taskTitle": "Write documentation",
-                "taskDescription": "Update the project documentation",
+                "description": "Update the project documentation",
                 "taskDate": "2024-10-13",
                 "category": "Documentation"
             },
@@ -151,7 +151,7 @@ const employees = [
                 "completed": false,
                 "failed": false,
                 "taskTitle": "Set up CI/CD",
-                "taskDescription": "Implement continuous integration pipeline",
+                "description": "Implement continuous integration pipeline",
                 "taskDate": "2024-10-11",
                 "category": "DevOps"
             }
@@ -175,7 +175,7 @@ const employees = [
                 "completed": false,
                 "failed": false,
                 "taskTitle": "UI redesign",
-                "taskDescription": "Redesign the user interface for better UX",
+                "description": "Redesign the user interface for better UX",
                 "taskDate": "2024-10-14",
                 "category": "Design"
             },
@@ -185,7 +185,7 @@ const employees = [
                 "completed": true,
                 "failed": false,
                 "taskTitle": "Deploy new build",
-                "taskDescription": "Deploy the latest build to production",
+                "description": "Deploy the latest build to production",
                 "taskDate": "2024-10-09",
                 "category": "DevOps"
             },
@@ -195,7 +195,7 @@ const employees = [
                 "completed": false,
                 "failed": false,
                 "taskTitle": "Client feedback",
-                "taskDescription": "Gather feedback from clients after product launch",
+                "Description": "Gather feedback from clients after product launch",
                 "taskDate": "2024-10-12",
                 "category": "Support"
             }
@@ -210,20 +210,18 @@ const admin = [{
     "password": "123"
 }];
 
-// useEffect(() => {
-//     setLocalStorage()
-// }, [])
+
 
 export const setLocalStorage = () => {
-    localStorage.setItem('employees', JSON.stringify(employees))
-    localStorage.setItem('admin', JSON.stringify(admin))
+    localStorage.setItem('employees', JSON.stringify(employees)) || []
+    localStorage.setItem('admin', JSON.stringify(admin)) || []
 }
-export const getLocalStorage = () => {
-    const employees = JSON.parse(localStorage.getItem('employees'))
-    const admin = JSON.parse(localStorage.getItem('admin'))
-    // console.log(employees)
 
+
+
+export const getLocalStorage = () => {
+    const employees = JSON.parse(localStorage.getItem('employees')) || []
+    const admin = JSON.parse(localStorage.getItem('admin')) || []
     return { employees, admin }
 }
-
 

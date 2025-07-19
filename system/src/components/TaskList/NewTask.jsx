@@ -9,7 +9,7 @@ const NewTask = ({ data }) => {
             </div>
             <h2 className="mt-4 text-lg font-bold">{data?.taskTitle ?? " Untitled Task"}</h2>
             <p className="mt-2 text-sm text-white/90">
-                {data?.taskDescription ?? "No description provided"}
+                {data?.description ?? "No description provided"}
             </p>
             <div className=' mt-20'>
                 <button className='border-2 py-1 px-3 rounded-sm bg-red-400  ' > Add NewTask</button>
